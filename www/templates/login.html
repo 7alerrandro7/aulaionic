@@ -1,17 +1,17 @@
 <ion-view view-title="Login">
   <ion-content class="padding">
-    <h2>Welcome to Ionic</h2>
+    <h2>Bem vindo ao Ionic</h2>
     <p>Entre com o seu usuário e senha!</p>
     <div class="list">
       <label class="item item-input">
-        <input type="text" placeholder="Email" ng-model="email">
+        <input type="text" placeholder="Email" ng-model="vm.email">
       </label>
       <label class="item item-input">
-        <input type="password" placeholder="Senha" ng-model="senha">
+        <input type="password" placeholder="Senha" ng-model="vm.password">
       </label>
     </div>
     <div class="padding">
-      <button class="button button-block button-positive activated" ng-click="">Enviar</button>
+      <button class="button button-block button-positive activated" ng-click="vm.doLogin()">Enviar</button>
     </div>
   </ion-content>
 </ion-view>

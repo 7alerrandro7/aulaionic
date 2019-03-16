@@ -1,5 +1,16 @@
 angular.module('starter.controllers', [])
 
+.controller('MainCtrl', function($scope, $state, firebase) {
+  let firebaseUser = firebase.auth().currentUser;
+
+  if (firebaseUser) {
+    console.log("Signed in as:", firebaseUser.uid);
+  } else {
+    console.log("Signed out");
+    $state.go("login");
+  }
+})
+
 .controller('DashCtrl', function($scope) {})
 
 .controller('ChatsCtrl', function($scope, Chats) {
@@ -25,4 +36,20 @@ angular.module('starter.controllers', [])
   $scope.settings = {
     enableFriends: true
   };
+})
+
+.controller('LoginCtrl', function($scope, $state, firebase) {
+  let vm = this;
+
+  vm.doLogin = doLogin;
+  
+  function doLogin(){
+    firebase.auth().signInWithEmailAndPassword(vm.email, vm.password)
+    .then(function(firebaseUser) {
+      console.log(firebaseUser);
+      $state.go("tab.dash");
+    }).catch(function(error){
+      alert(error.message);
+    })
+  }
 });
